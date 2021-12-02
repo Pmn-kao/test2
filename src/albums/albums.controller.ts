@@ -12,16 +12,26 @@ import {
   import { AlbumsService } from './albums.service';
   import { CreateAlbumDto } from './dto/create-album.dto';
   import { Albums } from '../entity/albums.entity';
+import { UserService } from 'src/user/user.service';
+import { InjectRepository } from '@nestjs/typeorm';
+import { User } from 'src/entity/user.entity';
+import { Repository } from 'typeorm';
   @Controller('albums')
   export class AlbumsController {
-    constructor(private readonly albumService: AlbumsService) {}
+    constructor(private readonly albumService: AlbumsService,
+      @InjectRepository(User)
+      private userRepository: Repository<User>,) {
+    }
+
   
     @Post() // POST /albums
     @HttpCode(HttpStatus.CREATED)
     async createAlbum(@Body() newAlbum: CreateAlbumDto): Promise<Albums> {
+      const findUser = await this.userRepository.findOne({id:newAlbum.user1});
       const album = new Albums();
       album.title = newAlbum.title;
       album.remark = newAlbum.remark;
+      album.user1 = findUser;
       return await this.albumService.createOrUpdate(album);
     }
   

@@ -7,9 +7,10 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { Albums } from './entity/albums.entity';
 import { config } from './orm';
+import { UserModule } from './user/user.module';
 
 @Module({
-  imports: [AlbumsModule,TypeOrmModule.forRoot(config)],
+  imports: [AlbumsModule,TypeOrmModule.forRoot(config), UserModule],
   controllers: [AppController],
   providers: [AppService],
 })

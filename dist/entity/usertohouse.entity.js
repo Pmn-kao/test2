@@ -9,34 +9,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.User = void 0;
+exports.Usertohouse = void 0;
 const typeorm_1 = require("typeorm");
-const albums_entity_1 = require("./albums.entity");
-const usertohouse_entity_1 = require("./usertohouse.entity");
-let User = class User {
+const house_entity_1 = require("./house.entity");
+const user_entity_1 = require("./user.entity");
+let Usertohouse = class Usertohouse {
 };
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)
-], User.prototype, "id", void 0);
+], Usertohouse.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ length: 30 }),
-    __metadata("design:type", String)
-], User.prototype, "name", void 0);
+    (0, typeorm_1.ManyToOne)(() => user_entity_1.User, user => user.usertohouses),
+    __metadata("design:type", user_entity_1.User)
+], Usertohouse.prototype, "user", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ length: 255 }),
-    __metadata("design:type", String)
-], User.prototype, "lastname", void 0);
-__decorate([
-    (0, typeorm_1.OneToMany)(() => albums_entity_1.Albums, albums => albums.user1),
-    __metadata("design:type", Array)
-], User.prototype, "albums1", void 0);
-__decorate([
-    (0, typeorm_1.OneToMany)(() => usertohouse_entity_1.Usertohouse, usertohouse => usertohouse.user),
-    __metadata("design:type", Array)
-], User.prototype, "usertohouses", void 0);
-User = __decorate([
+    (0, typeorm_1.ManyToOne)(() => house_entity_1.House, house => house.usertohouses),
+    __metadata("design:type", house_entity_1.House)
+], Usertohouse.prototype, "house", void 0);
+Usertohouse = __decorate([
     (0, typeorm_1.Entity)()
-], User);
-exports.User = User;
-//# sourceMappingURL=user.entity.js.map
+], Usertohouse);
+exports.Usertohouse = Usertohouse;
+//# sourceMappingURL=usertohouse.entity.js.map

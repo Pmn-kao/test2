@@ -1,6 +1,7 @@
 import { All } from '@nestjs/common';
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 import { Albums } from './albums.entity';
+import { Usertohouse } from './usertohouse.entity';
 
 @Entity()
 export class User {
@@ -19,5 +20,10 @@ export class User {
 )
 albums1:Albums[];
 
+@OneToMany(
+  () => Usertohouse,
+  usertohouse => usertohouse.user
+)
+usertohouses:Usertohouse[];
 }
 

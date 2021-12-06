@@ -11,11 +11,10 @@ import {
   } from '@nestjs/common';
   import { AlbumsService } from './albums.service';
   import { CreateAlbumDto } from './dto/create-album.dto';
-  import { Albums } from '../entity/albums.entity';
-import { UserService } from 'src/user/user.service';
-import { InjectRepository } from '@nestjs/typeorm';
-import { User } from 'src/entity/user.entity';
-import { Repository } from 'typeorm';
+  import { Albums } from '../../entity/albums.entity';
+  import { InjectRepository } from '@nestjs/typeorm';
+  import { User } from 'src/entity/user.entity';
+  import { Repository } from 'typeorm';
   @Controller('albums')
   export class AlbumsController {
     constructor(private readonly albumService: AlbumsService,

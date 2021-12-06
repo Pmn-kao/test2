@@ -21,6 +21,7 @@ const user_service_1 = require("../user/user.service");
 const typeorm_1 = require("@nestjs/typeorm");
 const user_entity_1 = require("../entity/user.entity");
 const typeorm_2 = require("typeorm");
+const find_album_dto_1 = require("./dto/find-album.dto");
 let AlbumsController = class AlbumsController {
     constructor(albumService, userRepository) {
         this.albumService = albumService;
@@ -28,24 +29,23 @@ let AlbumsController = class AlbumsController {
     }
     async createAlbum(newAlbum) {
         const findUser = await this.userRepository.findOne({ id: newAlbum.user1 });
-        const album = new albums_entity_1.Albums();
+        const album = new albums_entity_1.Albums;
         album.title = newAlbum.title;
         album.remark = newAlbum.remark;
         album.user1 = findUser;
-        return await this.albumService.createOrUpdate(album);
+        return await this.albumService.createAlbum(newAlbum);
     }
     async findAlbums() {
-        console.log('dist/**/*.entity{.ts,.js}');
-        return await this.albumService.findAll();
+        console.log("dist/**/*.entity{.ts,.js}");
+        return await this.albumService.Get();
     }
-    async findAlbum(id) {
-        return await this.albumService.findOne(id);
-    }
-    async updateAlbum(id, createAlbumDto) {
+    async findOne(id) {
         const album = await this.albumService.findOne(id);
-        album.title = createAlbumDto.title;
-        album.remark = createAlbumDto.remark;
-        return await this.albumService.createOrUpdate(album);
+        return album;
+    }
+    async findAlbum(getFil) {
+        const newAlbum = await this.albumService.searchAlbumByFilter(getFil);
+        return newAlbum;
     }
     async deleteAlbum(id) {
         await this.albumService.delete(id);
@@ -68,28 +68,27 @@ __decorate([
 ], AlbumsController.prototype, "findAlbums", null);
 __decorate([
     (0, common_1.Get)(':id'),
-    __param(0, (0, common_1.Param)('id')),
+    __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
+], AlbumsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [find_album_dto_1.AlbumFind]),
+    __metadata("design:returntype", Promise)
 ], AlbumsController.prototype, "findAlbum", null);
 __decorate([
-    (0, common_1.Put)(':id'),
-    __param(0, (0, common_1.Param)('id')),
-    __param(1, (0, common_1.Body)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number, create_album_dto_1.CreateAlbumDto]),
-    __metadata("design:returntype", Promise)
-], AlbumsController.prototype, "updateAlbum", null);
-__decorate([
-    (0, common_1.Delete)(':id'),
-    __param(0, (0, common_1.Param)('id')),
+    (0, common_1.Delete)(":id"),
+    __param(0, (0, common_1.Param)("id")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], AlbumsController.prototype, "deleteAlbum", null);
 AlbumsController = __decorate([
-    (0, common_1.Controller)('albums'),
+    (0, common_1.Controller)("albums"),
     __param(1, (0, typeorm_1.InjectRepository)(user_entity_1.User)),
     __metadata("design:paramtypes", [albums_service_1.AlbumsService,
         typeorm_2.Repository])

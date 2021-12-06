@@ -1,4 +1,4 @@
-import { User } from './user.entity';
+import { User } from "./user.entity";
 export declare class Albums {
     id: number;
     title: string;

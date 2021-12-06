@@ -9,24 +9,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Albums = void 0;
+exports.House = void 0;
 const typeorm_1 = require("typeorm");
-let Albums = class Albums {
+let House = class House {
 };
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)
-], Albums.prototype, "id", void 0);
+], House.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ length: 30 }),
+    (0, typeorm_1.Column)({ length: 50 }),
     __metadata("design:type", String)
-], Albums.prototype, "title", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ length: 255 }),
-    __metadata("design:type", String)
-], Albums.prototype, "remark", void 0);
-Albums = __decorate([
+], House.prototype, "name", void 0);
+House = __decorate([
     (0, typeorm_1.Entity)()
-], Albums);
-exports.Albums = Albums;
-//# sourceMappingURL=albums.entity.js.map
+], House);
+exports.House = House;
+//# sourceMappingURL=house.entity.js.map

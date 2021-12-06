@@ -6,23 +6,21 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AlbumsModule = void 0;
+exports.HouseModule = void 0;
 const common_1 = require("@nestjs/common");
-const albums_controller_1 = require("./albums.controller");
-const albums_service_1 = require("./albums.service");
+const house_controller_1 = require("./house.controller");
+const house_service_1 = require("./house.service");
 const typeorm_1 = require("@nestjs/typeorm");
-const albums_entity_1 = require("../entity/albums.entity");
-const user_entity_1 = require("../entity/user.entity");
-const user_module_1 = require("../user/user.module");
-let AlbumsModule = class AlbumsModule {
+const house_entity_1 = require("../entity/house.entity");
+let HouseModule = class HouseModule {
 };
-AlbumsModule = __decorate([
+HouseModule = __decorate([
     (0, common_1.Module)({
-        imports: [user_module_1.UserModule, typeorm_1.TypeOrmModule.forFeature([albums_entity_1.Albums, user_entity_1.User])],
-        controllers: [albums_controller_1.AlbumsController],
-        providers: [albums_service_1.AlbumsService],
-        exports: [albums_service_1.AlbumsService]
+        imports: [typeorm_1.TypeOrmModule.forFeature([house_entity_1.House])],
+        controllers: [house_controller_1.HouseController],
+        providers: [house_service_1.HouseService],
+        exports: [house_service_1.HouseService]
     })
-], AlbumsModule);
-exports.AlbumsModule = AlbumsModule;
-//# sourceMappingURL=albums.module.js.map
+], HouseModule);
+exports.HouseModule = HouseModule;
+//# sourceMappingURL=house.module.js.map

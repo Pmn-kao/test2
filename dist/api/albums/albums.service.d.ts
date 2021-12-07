@@ -1,5 +1,5 @@
-import { Albums } from 'src/entity/albums.entity';
-import { DeleteResult, Repository } from 'typeorm';
+import { Albums } from "src/entity/albums.entity";
+import { DeleteResult, Repository } from "typeorm";
 export declare class AlbumsService {
     private readonly albumRepository;
     constructor(albumRepository: Repository<Albums>);
@@ -8,4 +8,5 @@ export declare class AlbumsService {
     findAll(): Promise<Albums[]>;
     delete(id: number): Promise<DeleteResult>;
     getAll(): Promise<Albums[]>;
+    getById(id: number): Promise<Albums[]>;
 }

@@ -34,8 +34,8 @@ import { ApiTags } from '@nestjs/swagger';
     }
   
     @Get(':id') // GET /user/123
-    async findUserid(@Param('id') id: number): Promise<User> {
-      return await this.userService.findOne(id);
+    async findUserid(@Param('id') id: number): Promise<User[]> {
+      return await this.userService.getById(id);
     }
   
     @Put(':id') // PUT /usr/123

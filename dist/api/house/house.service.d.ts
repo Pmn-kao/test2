@@ -8,4 +8,5 @@ export declare class HouseService {
     findAll(): Promise<House[]>;
     delete(id: number): Promise<DeleteResult>;
     getAll(): Promise<House[]>;
+    getById(id: number): Promise<House[]>;
 }

@@ -33,8 +33,8 @@ import { ApiTags } from '@nestjs/swagger';
     }
   
     @Get(':id') // GET /house/123
-    async findHouseid(@Param('id') id: number): Promise<House> {
-      return await this.houseService.findOne(id);
+    async findHouseid(@Param('id') id: number): Promise<House[]> {
+      return await this.houseService.getById(id);
     }
   
     @Put(':id') // PUT /house/123

@@ -6,7 +6,7 @@ export declare class HouseController {
     constructor(houseService: HouseService);
     createHouse(newHouse: CreateHouseDto): Promise<House>;
     findHouse(): Promise<House[]>;
-    findHouseid(id: number): Promise<House>;
+    findHouseid(id: number): Promise<House[]>;
     updateHouse(id: number, createHouseDto: CreateHouseDto): Promise<House>;
     deleteHouse(id: number): Promise<any>;
 }

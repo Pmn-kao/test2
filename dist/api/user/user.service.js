@@ -41,6 +41,15 @@ let UserService = class UserService {
             .getMany();
         return _user;
     }
+    async getById(id) {
+        const _user = await this.userRepository
+            .createQueryBuilder("user")
+            .leftJoinAndSelect("user.albums1s", "albums1s")
+            .leftJoinAndSelect('user.usertohouses', 'usertohouses')
+            .andWhere('user.id = :id', { id: id })
+            .getMany();
+        return _user;
+    }
 };
 UserService = __decorate([
     (0, common_1.Injectable)(),

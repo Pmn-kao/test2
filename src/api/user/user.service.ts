@@ -38,5 +38,19 @@ export class UserService {
       .getMany();
     return _user;
   }
+
+  async getById(id: number) {
+    const _user = await this.userRepository
+    .createQueryBuilder("user")
+    .leftJoinAndSelect("user.albums1s", "albums1s")
+    .leftJoinAndSelect('user.usertohouses', 'usertohouses')
+    .andWhere('user.id = :id', { id: id })
+    .getMany();
+    // const _richMenu = await this.richMenuRepository.find({
+    //   relations: ["image"],
+    //   where: { id },
+    // });
+    return _user;
+  }
   
 }

@@ -40,6 +40,14 @@ let HouseService = class HouseService {
             .getMany();
         return _house;
     }
+    async getById(id) {
+        const _house = await this.houseRepository
+            .createQueryBuilder("house")
+            .leftJoinAndSelect("house.usertohouses", "usertohouses")
+            .andWhere('house.id = :id', { id: id })
+            .getMany();
+        return _house;
+    }
 };
 HouseService = __decorate([
     (0, common_1.Injectable)(),

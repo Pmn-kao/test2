@@ -33,7 +33,7 @@ let UserController = class UserController {
         return await this.userService.getAll();
     }
     async findUserid(id) {
-        return await this.userService.findOne(id);
+        return await this.userService.getById(id);
     }
     async updateUser(id, createUserDto) {
         const user = await this.userService.findOne(id);

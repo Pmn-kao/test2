@@ -35,8 +35,16 @@ let AlbumsService = class AlbumsService {
     }
     async getAll() {
         const _albums = await this.albumRepository
-            .createQueryBuilder('albums')
-            .leftJoinAndSelect('albums.user1', 'user1')
+            .createQueryBuilder("albums")
+            .leftJoinAndSelect("albums.user1", "user1")
+            .getMany();
+        return _albums;
+    }
+    async getById(id) {
+        const _albums = await this.albumRepository
+            .createQueryBuilder("albums")
+            .leftJoinAndSelect("albums.user1", "user1")
+            .andWhere('albums.id = :id', { id: id })
             .getMany();
         return _albums;
     }

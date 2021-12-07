@@ -9,7 +9,7 @@ export declare class AlbumsController {
     constructor(albumService: AlbumsService, userRepository: Repository<User>);
     createAlbum(newAlbum: CreateAlbumDto): Promise<Albums>;
     findAlbums(): Promise<Albums[]>;
-    findAlbum(id: number): Promise<Albums>;
+    findAlbum(id: number): Promise<Albums[]>;
     updateAlbum(id: number, createAlbumDto: CreateAlbumDto): Promise<Albums>;
     deleteAlbum(id: number): Promise<any>;
 }

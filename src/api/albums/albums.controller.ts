@@ -43,8 +43,8 @@ import { ApiProperty, ApiTags } from '@nestjs/swagger';
     }
   
     @Get(':id') // GET /albums/123
-    async findAlbum(@Param('id') id: number): Promise<Albums> {
-      return await this.albumService.findOne(id);
+    async findAlbum(@Param('id') id: number): Promise<Albums[]> {
+      return await this.albumService.getById(id);
     }
   
     @Put(':id') // PUT /albums/123

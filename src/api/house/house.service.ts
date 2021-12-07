@@ -37,5 +37,18 @@ export class HouseService {
       .getMany();
     return _house;
   }
+
+  async getById(id: number) {
+    const _house = await this.houseRepository
+    .createQueryBuilder("house")
+    .leftJoinAndSelect("house.usertohouses", "usertohouses")
+    .andWhere('house.id = :id', { id: id })
+    .getMany();
+    // const _richMenu = await this.richMenuRepository.find({
+    //   relations: ["image"],
+    //   where: { id },
+    // });
+    return _house;
+  }
 }
 

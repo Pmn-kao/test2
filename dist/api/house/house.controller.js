@@ -32,7 +32,7 @@ let HouseController = class HouseController {
         return await this.houseService.getAll();
     }
     async findHouseid(id) {
-        return await this.houseService.findOne(id);
+        return await this.houseService.getById(id);
     }
     async updateHouse(id, createHouseDto) {
         const house = await this.houseService.findOne(id);

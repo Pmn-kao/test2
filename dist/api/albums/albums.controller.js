@@ -39,7 +39,7 @@ let AlbumsController = class AlbumsController {
         return await this.albumService.getAll();
     }
     async findAlbum(id) {
-        return await this.albumService.findOne(id);
+        return await this.albumService.getById(id);
     }
     async updateAlbum(id, createAlbumDto) {
         const album = await this.albumService.findOne(id);

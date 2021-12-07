@@ -28,5 +28,15 @@ export class AlbumsService {
      return await this.albumRepository.delete({ id: id });
   }
 
+  // async Get() {
+  //   const _al = await this.al
+  //     .createQueryBuilder('al')
+  //     .leftJoinAndSelect('al.user', 'user')
+  //     .andWhere('al.isDelete= :isDelete', { isDelete: false })
+  //     .orderBy('al.createdAt', 'DESC')
+  //     .getMany();
+  //   return _al;
+  // }
+
   
 }

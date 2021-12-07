@@ -15,6 +15,8 @@ import {
   import { InjectRepository } from '@nestjs/typeorm';
   import { User } from 'src/entity/user.entity';
   import { Repository } from 'typeorm';
+import { ApiProperty, ApiTags } from '@nestjs/swagger';
+  @ApiTags('albums')
   @Controller('albums')
   export class AlbumsController {
     constructor(private readonly albumService: AlbumsService,

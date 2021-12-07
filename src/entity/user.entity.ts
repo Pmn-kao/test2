@@ -20,7 +20,7 @@ export class User {
 )
 albums1s:Albums[];
 
-@OneToMany(
+  @OneToMany(
   () => Usertohouse,
   usertohouse => usertohouse.user
 )

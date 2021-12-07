@@ -12,8 +12,8 @@ Controller,
   import { UsertohouseService } from './usertohouse.service';
   import { CreateUsertohouseDto } from './dto/create-Usertohouse.dto';
   import { Usertohouse } from 'src/entity/usertohouse.entity';
-
-
+import { ApiTags } from '@nestjs/swagger';
+@ApiTags('usertohouse')
 @Controller('Usertohouse')
 export class UsertohouseController {
   constructor(private readonly UsertohouseService: UsertohouseService) {}

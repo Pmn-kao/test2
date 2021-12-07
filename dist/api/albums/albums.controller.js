@@ -20,6 +20,7 @@ const albums_entity_1 = require("../../entity/albums.entity");
 const typeorm_1 = require("@nestjs/typeorm");
 const user_entity_1 = require("../../entity/user.entity");
 const typeorm_2 = require("typeorm");
+const swagger_1 = require("@nestjs/swagger");
 let AlbumsController = class AlbumsController {
     constructor(albumService, userRepository) {
         this.albumService = albumService;
@@ -88,6 +89,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], AlbumsController.prototype, "deleteAlbum", null);
 AlbumsController = __decorate([
+    (0, swagger_1.ApiTags)('albums'),
     (0, common_1.Controller)('albums'),
     __param(1, (0, typeorm_1.InjectRepository)(user_entity_1.User)),
     __metadata("design:paramtypes", [albums_service_1.AlbumsService,

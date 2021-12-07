@@ -12,11 +12,12 @@ import {
   import { UserService } from './user.service';
   import { CreateUserDto } from './dto/create-user.dto';
   import { User } from 'src/entity/user.entity';
-
+import { ApiTags } from '@nestjs/swagger';
+  @ApiTags('user')
   @Controller('user')
   export class UserController {
     constructor(private readonly userService: UserService) {}
-  
+   
     @Post() // POST /user
     @HttpCode(HttpStatus.CREATED)
     async createUser(@Body() newUser: CreateUserDto): Promise<User> {

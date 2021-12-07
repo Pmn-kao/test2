@@ -17,6 +17,7 @@ const common_1 = require("@nestjs/common");
 const usertohouse_service_1 = require("./usertohouse.service");
 const create_Usertohouse_dto_1 = require("./dto/create-Usertohouse.dto");
 const usertohouse_entity_1 = require("../../entity/usertohouse.entity");
+const swagger_1 = require("@nestjs/swagger");
 let UsertohouseController = class UsertohouseController {
     constructor(UsertohouseService) {
         this.UsertohouseService = UsertohouseService;
@@ -78,6 +79,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UsertohouseController.prototype, "deleteUsertohouse", null);
 UsertohouseController = __decorate([
+    (0, swagger_1.ApiTags)('usertohouse'),
     (0, common_1.Controller)('Usertohouse'),
     __metadata("design:paramtypes", [usertohouse_service_1.UsertohouseService])
 ], UsertohouseController);

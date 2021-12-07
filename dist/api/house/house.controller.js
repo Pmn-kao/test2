@@ -17,6 +17,7 @@ const common_1 = require("@nestjs/common");
 const house_service_1 = require("./house.service");
 const create_house_dto_1 = require("./dto/create-house.dto");
 const house_entity_1 = require("../../entity/house.entity");
+const swagger_1 = require("@nestjs/swagger");
 let HouseController = class HouseController {
     constructor(houseService) {
         this.houseService = houseService;
@@ -80,6 +81,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], HouseController.prototype, "deleteHouse", null);
 HouseController = __decorate([
+    (0, swagger_1.ApiTags)('house'),
     (0, common_1.Controller)('house'),
     __metadata("design:paramtypes", [house_service_1.HouseService])
 ], HouseController);

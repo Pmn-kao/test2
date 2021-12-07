@@ -30,7 +30,7 @@ import { ApiTags } from '@nestjs/swagger';
     @Get() // GET /user
     async findUser(): Promise<User[]> {
       console.log('dist/**/*.entity{.ts,.js}');
-      return await this.userService.findAll();
+      return await this.userService.getAll();
     }
   
     @Get(':id') // GET /user/123

@@ -28,15 +28,15 @@ export class AlbumsService {
      return await this.albumRepository.delete({ id: id });
   }
 
-  // async Get() {
-  //   const _al = await this.al
-  //     .createQueryBuilder('al')
-  //     .leftJoinAndSelect('al.user', 'user')
-  //     .andWhere('al.isDelete= :isDelete', { isDelete: false })
-  //     .orderBy('al.createdAt', 'DESC')
-  //     .getMany();
-  //   return _al;
-  // }
+  async getAll() {
+    const _albums = await this.albumRepository
+      .createQueryBuilder('albums')
+      .leftJoinAndSelect('albums.user1', 'user1')
+      // .andWhere('al.isDelete= :isDelete', { isDelete: false })
+      // .orderBy('al.createdAt', 'DESC')
+      .getMany();
+    return _albums;
+  }
 
   
 }

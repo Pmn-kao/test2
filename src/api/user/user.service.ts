@@ -28,5 +28,15 @@ export class UserService {
      return await this.userRepository.delete({ id: id });
   }
 
+  async getAll() {
+    const _user = await this.userRepository
+      .createQueryBuilder('user')
+      .leftJoinAndSelect('user.albums1s', 'albums1s')
+      .leftJoinAndSelect('user.usertohouses', 'usertohouses')
+      // .andWhere('al.isDelete= :isDelete', { isDelete: false })
+      // .orderBy('al.createdAt', 'DESC')
+      .getMany();
+    return _user;
+  }
   
 }

@@ -29,7 +29,7 @@ import { ApiTags } from '@nestjs/swagger';
     @Get() // GET /house
     async findHouse(): Promise<House[]> {
       console.log('dist/**/*.entity{.ts,.js}');
-      return await this.houseService.findAll();
+      return await this.houseService.getAll();
     }
   
     @Get(':id') // GET /house/123

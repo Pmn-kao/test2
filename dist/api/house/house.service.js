@@ -33,6 +33,13 @@ let HouseService = class HouseService {
     async delete(id) {
         return await this.houseRepository.delete({ id: id });
     }
+    async getAll() {
+        const _house = await this.houseRepository
+            .createQueryBuilder('house')
+            .leftJoinAndSelect('house.usertohouses', 'usertohouses')
+            .getMany();
+        return _house;
+    }
 };
 HouseService = __decorate([
     (0, common_1.Injectable)(),

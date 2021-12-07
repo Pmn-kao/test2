@@ -7,4 +7,5 @@ export declare class AlbumsService {
     findOne(id: number): Promise<Albums>;
     findAll(): Promise<Albums[]>;
     delete(id: number): Promise<DeleteResult>;
+    getAll(): Promise<Albums[]>;
 }

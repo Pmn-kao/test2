@@ -39,7 +39,7 @@ import { ApiProperty, ApiTags } from '@nestjs/swagger';
     @Get() // GET /albums
     async findAlbums(): Promise<Albums[]> {
       console.log('dist/**/*.entity{.ts,.js}');
-      return await this.albumService.findAll();
+      return await this.albumService.getAll();
     }
   
     @Get(':id') // GET /albums/123

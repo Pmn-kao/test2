@@ -28,7 +28,7 @@ export class UsertohouseController {
   @Get() // GET /Usertohouse
   async findUsertohouse(): Promise<Usertohouse[]> {
     console.log('dist/**/*.entity{.ts,.js}');
-    return await this.UsertohouseService.findAll();
+    return await this.UsertohouseService.getAll();
   }
 
   @Get(':id') // GET /Usertohouse/123

@@ -27,5 +27,15 @@ export class HouseService {
   async delete(id: number): Promise<DeleteResult> {
      return await this.houseRepository.delete({ id: id });
   }
+
+  async getAll() {
+    const _house = await this.houseRepository
+      .createQueryBuilder('house')
+      .leftJoinAndSelect('house.usertohouses', 'usertohouses')
+      // .andWhere('al.isDelete= :isDelete', { isDelete: false })
+      // .orderBy('al.createdAt', 'DESC')
+      .getMany();
+    return _house;
+  }
 }
 

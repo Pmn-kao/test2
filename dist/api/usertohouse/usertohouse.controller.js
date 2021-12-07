@@ -12,43 +12,33 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AlbumsController = void 0;
+exports.UsertohouseController = void 0;
 const common_1 = require("@nestjs/common");
-const albums_service_1 = require("./albums.service");
-const create_album_dto_1 = require("./dto/create-album.dto");
-const albums_entity_1 = require("../../entity/albums.entity");
-const typeorm_1 = require("@nestjs/typeorm");
-const user_entity_1 = require("../../entity/user.entity");
-const typeorm_2 = require("typeorm");
+const usertohouse_service_1 = require("./usertohouse.service");
+const create_Usertohouse_dto_1 = require("./dto/create-Usertohouse.dto");
+const usertohouse_entity_1 = require("../../entity/usertohouse.entity");
 const swagger_1 = require("@nestjs/swagger");
-let AlbumsController = class AlbumsController {
-    constructor(albumService, userRepository) {
-        this.albumService = albumService;
-        this.userRepository = userRepository;
+let UsertohouseController = class UsertohouseController {
+    constructor(UsertohouseService) {
+        this.UsertohouseService = UsertohouseService;
     }
-    async createAlbum(newAlbum) {
-        const findUser = await this.userRepository.findOne({ id: newAlbum.user1 });
-        const album = new albums_entity_1.Albums();
-        album.title = newAlbum.title;
-        album.remark = newAlbum.remark;
-        album.user1 = findUser;
-        return await this.albumService.createOrUpdate(album);
+    async createUsertohouse(newUsertohouse) {
+        const usertohouse = new usertohouse_entity_1.Usertohouse();
+        return await this.UsertohouseService.createOrUpdate(usertohouse);
     }
-    async findAlbums() {
+    async findUsertohouse() {
         console.log('dist/**/*.entity{.ts,.js}');
-        return await this.albumService.getAll();
+        return await this.UsertohouseService.getAll();
     }
-    async findAlbum(id) {
-        return await this.albumService.findOne(id);
+    async findUsertohouseid(id) {
+        return await this.UsertohouseService.findOne(id);
     }
-    async updateAlbum(id, createAlbumDto) {
-        const album = await this.albumService.findOne(id);
-        album.title = createAlbumDto.title;
-        album.remark = createAlbumDto.remark;
-        return await this.albumService.createOrUpdate(album);
+    async updateUsertohouse(id, createUsertohouseDto) {
+        const Usertohouse = await this.UsertohouseService.findOne(id);
+        return await this.UsertohouseService.createOrUpdate(Usertohouse);
     }
-    async deleteAlbum(id) {
-        await this.albumService.delete(id);
+    async deleteUsertohouse(id) {
+        await this.UsertohouseService.delete(id);
         return { success: true };
     }
 };
@@ -57,43 +47,41 @@ __decorate([
     (0, common_1.HttpCode)(common_1.HttpStatus.CREATED),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [create_album_dto_1.CreateAlbumDto]),
+    __metadata("design:paramtypes", [create_Usertohouse_dto_1.CreateUsertohouseDto]),
     __metadata("design:returntype", Promise)
-], AlbumsController.prototype, "createAlbum", null);
+], UsertohouseController.prototype, "createUsertohouse", null);
 __decorate([
     (0, common_1.Get)(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
-], AlbumsController.prototype, "findAlbums", null);
+], UsertohouseController.prototype, "findUsertohouse", null);
 __decorate([
     (0, common_1.Get)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
-], AlbumsController.prototype, "findAlbum", null);
+], UsertohouseController.prototype, "findUsertohouseid", null);
 __decorate([
     (0, common_1.Put)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number, create_album_dto_1.CreateAlbumDto]),
+    __metadata("design:paramtypes", [Number, create_Usertohouse_dto_1.CreateUsertohouseDto]),
     __metadata("design:returntype", Promise)
-], AlbumsController.prototype, "updateAlbum", null);
+], UsertohouseController.prototype, "updateUsertohouse", null);
 __decorate([
     (0, common_1.Delete)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
-], AlbumsController.prototype, "deleteAlbum", null);
-AlbumsController = __decorate([
-    (0, swagger_1.ApiTags)('albums'),
-    (0, common_1.Controller)('albums'),
-    __param(1, (0, typeorm_1.InjectRepository)(user_entity_1.User)),
-    __metadata("design:paramtypes", [albums_service_1.AlbumsService,
-        typeorm_2.Repository])
-], AlbumsController);
-exports.AlbumsController = AlbumsController;
-//# sourceMappingURL=albums.controller.js.map
+], UsertohouseController.prototype, "deleteUsertohouse", null);
+UsertohouseController = __decorate([
+    (0, swagger_1.ApiTags)('usertohouse'),
+    (0, common_1.Controller)('Usertohouse'),
+    __metadata("design:paramtypes", [usertohouse_service_1.UsertohouseService])
+], UsertohouseController);
+exports.UsertohouseController = UsertohouseController;
+//# sourceMappingURL=usertohouse.controller.js.map

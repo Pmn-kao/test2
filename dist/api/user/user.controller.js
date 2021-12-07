@@ -30,7 +30,7 @@ let UserController = class UserController {
     }
     async findUser() {
         console.log('dist/**/*.entity{.ts,.js}');
-        return await this.userService.findAll();
+        return await this.userService.getAll();
     }
     async findUserid(id) {
         return await this.userService.findOne(id);

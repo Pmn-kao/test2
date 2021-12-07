@@ -33,6 +33,13 @@ let AlbumsService = class AlbumsService {
     async delete(id) {
         return await this.albumRepository.delete({ id: id });
     }
+    async getAll() {
+        const _albums = await this.albumRepository
+            .createQueryBuilder('albums')
+            .leftJoinAndSelect('albums.user1', 'user1')
+            .getMany();
+        return _albums;
+    }
 };
 AlbumsService = __decorate([
     (0, common_1.Injectable)(),

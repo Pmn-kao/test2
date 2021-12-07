@@ -29,7 +29,7 @@ let HouseController = class HouseController {
     }
     async findHouse() {
         console.log('dist/**/*.entity{.ts,.js}');
-        return await this.houseService.findAll();
+        return await this.houseService.getAll();
     }
     async findHouseid(id) {
         return await this.houseService.findOne(id);

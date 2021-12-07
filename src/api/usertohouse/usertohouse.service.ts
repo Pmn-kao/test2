@@ -27,4 +27,14 @@ export class UsertohouseService {
   async delete(id: number): Promise<DeleteResult> {
      return await this.usertohouseRepository.delete({ id: id });
   }
+
+  async getAll() {
+    const _usertohouse = await this.usertohouseRepository
+      .createQueryBuilder('usertohouse')
+      .leftJoinAndSelect('usertohouse. house', ' house')
+      // .andWhere('al.isDelete= :isDelete', { isDelete: false })
+      // .orderBy('al.createdAt', 'DESC')
+      .getMany();
+    return _usertohouse;
+  }
 }

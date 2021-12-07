@@ -12,40 +12,39 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserService = void 0;
+exports.UsertohouseService = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
-const user_entity_1 = require("../../entity/user.entity");
+const Usertohouse_entity_1 = require("../../entity/Usertohouse.entity");
 const typeorm_2 = require("typeorm");
-let UserService = class UserService {
-    constructor(userRepository) {
-        this.userRepository = userRepository;
+let UsertohouseService = class UsertohouseService {
+    constructor(usertohouseRepository) {
+        this.usertohouseRepository = usertohouseRepository;
     }
-    async createOrUpdate(user) {
-        return await this.userRepository.save(user);
+    async createOrUpdate(usertohouse) {
+        return await this.usertohouseRepository.save(usertohouse);
     }
     async findOne(id) {
-        return await this.userRepository.findOne({ id: id });
+        return await this.usertohouseRepository.findOne({ id: id });
     }
     async findAll() {
-        return await this.userRepository.find();
+        return await this.usertohouseRepository.find();
     }
     async delete(id) {
-        return await this.userRepository.delete({ id: id });
+        return await this.usertohouseRepository.delete({ id: id });
     }
     async getAll() {
-        const _user = await this.userRepository
-            .createQueryBuilder('user')
-            .leftJoinAndSelect('user.albums1s', 'albums1s')
-            .leftJoinAndSelect('user.usertohouses', 'usertohouses')
+        const _usertohouse = await this.usertohouseRepository
+            .createQueryBuilder('usertohouse')
+            .leftJoinAndSelect('usertohouse. house', ' house')
             .getMany();
-        return _user;
+        return _usertohouse;
     }
 };
-UserService = __decorate([
+UsertohouseService = __decorate([
     (0, common_1.Injectable)(),
-    __param(0, (0, typeorm_1.InjectRepository)(user_entity_1.User)),
+    __param(0, (0, typeorm_1.InjectRepository)(Usertohouse_entity_1.Usertohouse)),
     __metadata("design:paramtypes", [typeorm_2.Repository])
-], UserService);
-exports.UserService = UserService;
-//# sourceMappingURL=user.service.js.map
+], UsertohouseService);
+exports.UsertohouseService = UsertohouseService;
+//# sourceMappingURL=usertohouse.service.js.map

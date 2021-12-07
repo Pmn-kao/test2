@@ -16,9 +16,9 @@ export class User {
 
   @OneToMany(
     () => Albums,
-    albums => albums.user1
+    albums => albums.user1,
 )
-albums1:Albums[];
+albums1s:Albums[];
 
 @OneToMany(
   () => Usertohouse,

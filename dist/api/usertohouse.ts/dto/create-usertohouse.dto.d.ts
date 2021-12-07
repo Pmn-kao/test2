@@ -1,2 +1,2 @@
-export declare class CreateUserDto {
+export declare class CreateUsertohouseDto {
 }

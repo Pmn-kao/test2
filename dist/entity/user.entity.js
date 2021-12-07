@@ -30,7 +30,7 @@ __decorate([
 __decorate([
     (0, typeorm_1.OneToMany)(() => albums_entity_1.Albums, albums => albums.user1),
     __metadata("design:type", Array)
-], User.prototype, "albums1", void 0);
+], User.prototype, "albums1s", void 0);
 __decorate([
     (0, typeorm_1.OneToMany)(() => usertohouse_entity_1.Usertohouse, usertohouse => usertohouse.user),
     __metadata("design:type", Array)

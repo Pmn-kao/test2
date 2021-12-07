@@ -14,7 +14,7 @@ export class Albums {
 
   @ManyToOne(
     () => User,
-    user => user.albums1
+    user => user.albums1s,
   )
   user1:User;
 

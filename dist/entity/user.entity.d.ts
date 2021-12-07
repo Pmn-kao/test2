@@ -4,6 +4,6 @@ export declare class User {
     id: number;
     name: string;
     lastname: string;
-    albums1: Albums[];
+    albums1s: Albums[];
     usertohouses: Usertohouse[];
 }

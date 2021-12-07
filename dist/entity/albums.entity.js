@@ -27,7 +27,7 @@ __decorate([
     __metadata("design:type", String)
 ], Albums.prototype, "remark", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => user_entity_1.User, user => user.albums1),
+    (0, typeorm_1.ManyToOne)(() => user_entity_1.User, user => user.albums1s),
     __metadata("design:type", user_entity_1.User)
 ], Albums.prototype, "user1", void 0);
 Albums = __decorate([

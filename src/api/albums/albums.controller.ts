@@ -63,4 +63,5 @@ import { ApiProperty, ApiTags } from '@nestjs/swagger';
       await this.albumService.delete(id);
       return { success: true };
     }
+  } }
   }

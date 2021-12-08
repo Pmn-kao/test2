@@ -18,18 +18,22 @@ const user_service_1 = require("./user.service");
 const create_user_dto_1 = require("./dto/create-user.dto");
 const user_entity_1 = require("../../entity/user.entity");
 const swagger_1 = require("@nestjs/swagger");
+const jwt_guard_1 = require("../auth/jwt-guard");
 let UserController = class UserController {
     constructor(userService) {
         this.userService = userService;
     }
     async createUser(newUser) {
+        const { name, lastname, email, password, confirmPassword } = newUser;
         const user = new user_entity_1.User();
         user.name = newUser.name;
         user.lastname = newUser.lastname;
+        user.email = newUser.email;
+        user.password = await this.userService.getHashPassword(confirmPassword);
         return await this.userService.createOrUpdate(user);
     }
     async findUser() {
-        console.log('dist/**/*.entity{.ts,.js}');
+        console.log("dist/**/*.entity{.ts,.js}");
         return await this.userService.getAll();
     }
     async findUserid(id) {
@@ -55,36 +59,41 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "createUser", null);
 __decorate([
+    (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard),
     (0, common_1.Get)(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "findUser", null);
 __decorate([
-    (0, common_1.Get)(':id'),
-    __param(0, (0, common_1.Param)('id')),
+    (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard),
+    (0, common_1.Get)(":id"),
+    __param(0, (0, common_1.Param)("id")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "findUserid", null);
 __decorate([
-    (0, common_1.Put)(':id'),
-    __param(0, (0, common_1.Param)('id')),
+    (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard),
+    (0, common_1.Put)(":id"),
+    __param(0, (0, common_1.Param)("id")),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number, create_user_dto_1.CreateUserDto]),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "updateUser", null);
 __decorate([
-    (0, common_1.Delete)(':id'),
-    __param(0, (0, common_1.Param)('id')),
+    (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard),
+    (0, common_1.Delete)(":id"),
+    __param(0, (0, common_1.Param)("id")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "deleteUser", null);
 UserController = __decorate([
-    (0, swagger_1.ApiTags)('user'),
-    (0, common_1.Controller)('user'),
+    (0, swagger_1.ApiTags)("user"),
+    (0, common_1.Controller)("user"),
+    (0, swagger_1.ApiBearerAuth)(),
     __metadata("design:paramtypes", [user_service_1.UserService])
 ], UserController);
 exports.UserController = UserController;

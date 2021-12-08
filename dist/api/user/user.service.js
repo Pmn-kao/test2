@@ -17,9 +17,14 @@ const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const user_entity_1 = require("../../entity/user.entity");
 const typeorm_2 = require("typeorm");
+const bcrypt_1 = require("bcrypt");
 let UserService = class UserService {
     constructor(userRepository) {
         this.userRepository = userRepository;
+        this.saltRounds = 10;
+    }
+    async getHashPassword(password) {
+        return await (0, bcrypt_1.hash)(password, this.saltRounds);
     }
     async createOrUpdate(user) {
         return await this.userRepository.save(user);
@@ -35,9 +40,9 @@ let UserService = class UserService {
     }
     async getAll() {
         const _user = await this.userRepository
-            .createQueryBuilder('user')
-            .leftJoinAndSelect('user.albums1s', 'albums1s')
-            .leftJoinAndSelect('user.usertohouses', 'usertohouses')
+            .createQueryBuilder("user")
+            .leftJoinAndSelect("user.albums1s", "albums1s")
+            .leftJoinAndSelect("user.usertohouses", "usertohouses")
             .getRawMany();
         return _user;
     }
@@ -45,10 +50,22 @@ let UserService = class UserService {
         const _user = await this.userRepository
             .createQueryBuilder("user")
             .leftJoinAndSelect("user.albums1s", "albums1s")
-            .leftJoinAndSelect('user.usertohouses', 'usertohouses')
-            .andWhere('user.id = :id', { id: id })
+            .leftJoinAndSelect("user.usertohouses", "usertohouses")
+            .andWhere("user.id = :id", { id: id })
             .getMany();
         return _user;
+    }
+    async findEmail(email) {
+        return await this.userRepository.findOne({
+            where: { email: email },
+            relations: ["albums1s", "usertohouses"],
+        });
+    }
+    async compareHash(password, hash) {
+        return await (0, bcrypt_1.compare)(password, hash);
+    }
+    async findPayload(payload) {
+        return await this.userRepository.findOne({ where: { id: payload.id } });
     }
 };
 UserService = __decorate([

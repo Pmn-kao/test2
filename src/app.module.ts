@@ -7,6 +7,9 @@ import { UsertohouseModule } from "./api/usertohouse/usertohouse.module";
 import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 import { config } from "./orm";
+import { AuthModule } from "./api/auth/auth.module";
+import { AuthService } from "./api/auth/auth.service";
+import { JwtService } from "@nestjs/jwt";
 
 @Module({
   imports: [
@@ -14,7 +17,8 @@ import { config } from "./orm";
     UserModule,
     AlbumsModule,
     HouseModule,
-    UsertohouseModule
+    UsertohouseModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

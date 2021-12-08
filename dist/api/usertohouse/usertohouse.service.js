@@ -34,9 +34,9 @@ let UsertohouseService = class UsertohouseService {
         return await this.usertohouseRepository.delete({ id: id });
     }
     async getAll() {
-        const _usertohouse = await this.usertohouseRepository
-            .createQueryBuilder('usertohouse')
-            .leftJoinAndSelect('usertohouse.house', 'house')
+        const [_usertohouse] = await this.usertohouseRepository
+            .createQueryBuilder("usertohouse")
+            .leftJoinAndSelect("usertohouse.house", "house")
             .leftJoinAndSelect("usertohouse.user", "user")
             .getMany();
         return _usertohouse;
@@ -46,7 +46,7 @@ let UsertohouseService = class UsertohouseService {
             .createQueryBuilder("usertohouse")
             .leftJoinAndSelect("usertohouse.house", "house")
             .leftJoinAndSelect("usertohouse.user", "user")
-            .andWhere('usertohouse.id = :id', { id: id })
+            .andWhere("usertohouse.id = :id", { id: id })
             .getMany();
         return _usertohouse;
     }

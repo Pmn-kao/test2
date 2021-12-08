@@ -1,5 +1,5 @@
-import { Usertohouse } from 'src/entity/Usertohouse.entity';
-import { DeleteResult, Repository } from 'typeorm';
+import { Usertohouse } from "src/entity/Usertohouse.entity";
+import { DeleteResult, Repository } from "typeorm";
 export declare class UsertohouseService {
     private readonly usertohouseRepository;
     constructor(usertohouseRepository: Repository<Usertohouse>);
@@ -7,6 +7,6 @@ export declare class UsertohouseService {
     findOne(id: number): Promise<Usertohouse>;
     findAll(): Promise<Usertohouse[]>;
     delete(id: number): Promise<DeleteResult>;
-    getAll(): Promise<Usertohouse[]>;
+    getAll(): Promise<Usertohouse>;
     getById(id: number): Promise<Usertohouse[]>;
 }

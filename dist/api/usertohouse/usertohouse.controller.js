@@ -26,8 +26,8 @@ let UsertohouseController = class UsertohouseController {
         const usertohouse = new usertohouse_entity_1.Usertohouse();
         return await this.UsertohouseService.createOrUpdate(usertohouse);
     }
-    async findUsertohouse() {
-        console.log('dist/**/*.entity{.ts,.js}');
+    async findUser() {
+        console.log("dist/**/*.entity{.ts,.js}");
         return await this.UsertohouseService.getAll();
     }
     async findUsertohouseid(id) {
@@ -55,32 +55,32 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
-], UsertohouseController.prototype, "findUsertohouse", null);
+], UsertohouseController.prototype, "findUser", null);
 __decorate([
-    (0, common_1.Get)(':id'),
-    __param(0, (0, common_1.Param)('id')),
+    (0, common_1.Get)(":id"),
+    __param(0, (0, common_1.Param)("id")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], UsertohouseController.prototype, "findUsertohouseid", null);
 __decorate([
-    (0, common_1.Put)(':id'),
-    __param(0, (0, common_1.Param)('id')),
+    (0, common_1.Put)(":id"),
+    __param(0, (0, common_1.Param)("id")),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number, create_Usertohouse_dto_1.CreateUsertohouseDto]),
     __metadata("design:returntype", Promise)
 ], UsertohouseController.prototype, "updateUsertohouse", null);
 __decorate([
-    (0, common_1.Delete)(':id'),
-    __param(0, (0, common_1.Param)('id')),
+    (0, common_1.Delete)(":id"),
+    __param(0, (0, common_1.Param)("id")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], UsertohouseController.prototype, "deleteUsertohouse", null);
 UsertohouseController = __decorate([
-    (0, swagger_1.ApiTags)('usertohouse'),
-    (0, common_1.Controller)('Usertohouse'),
+    (0, swagger_1.ApiTags)("usertohouse"),
+    (0, common_1.Controller)("Usertohouse"),
     __metadata("design:paramtypes", [usertohouse_service_1.UsertohouseService])
 ], UsertohouseController);
 exports.UsertohouseController = UsertohouseController;

@@ -7,6 +7,6 @@ export declare class UserService {
     findOne(id: number): Promise<User>;
     findAll(): Promise<User[]>;
     delete(id: number): Promise<DeleteResult>;
-    getAll(): Promise<User[]>;
+    getAll(): Promise<any[]>;
     getById(id: number): Promise<User[]>;
 }

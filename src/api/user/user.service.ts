@@ -35,7 +35,7 @@ export class UserService {
       .leftJoinAndSelect('user.usertohouses', 'usertohouses')
       // .andWhere('al.isDelete= :isDelete', { isDelete: false })
       // .orderBy('al.createdAt', 'DESC')
-      .getMany();
+      .getRawMany();
     return _user;
   }
 

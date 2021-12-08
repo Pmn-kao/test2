@@ -38,7 +38,7 @@ let UserService = class UserService {
             .createQueryBuilder('user')
             .leftJoinAndSelect('user.albums1s', 'albums1s')
             .leftJoinAndSelect('user.usertohouses', 'usertohouses')
-            .getMany();
+            .getRawMany();
         return _user;
     }
     async getById(id) {

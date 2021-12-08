@@ -12,6 +12,7 @@ const typeorm_1 = require("@nestjs/typeorm");
 const albums_module_1 = require("./api/albums/albums.module");
 const house_module_1 = require("./api/house/house.module");
 const user_module_1 = require("./api/user/user.module");
+const usertohouse_module_1 = require("./api/usertohouse/usertohouse.module");
 const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
 const orm_1 = require("./orm");
@@ -24,6 +25,7 @@ AppModule = __decorate([
             user_module_1.UserModule,
             albums_module_1.AlbumsModule,
             house_module_1.HouseModule,
+            usertohouse_module_1.UsertohouseModule
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

@@ -8,4 +8,5 @@ export declare class UsertohouseService {
     findAll(): Promise<Usertohouse[]>;
     delete(id: number): Promise<DeleteResult>;
     getAll(): Promise<Usertohouse[]>;
+    getById(id: number): Promise<Usertohouse[]>;
 }

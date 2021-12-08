@@ -31,7 +31,7 @@ let UsertohouseController = class UsertohouseController {
         return await this.UsertohouseService.getAll();
     }
     async findUsertohouseid(id) {
-        return await this.UsertohouseService.findOne(id);
+        return await this.UsertohouseService.getById(id);
     }
     async updateUsertohouse(id, createUsertohouseDto) {
         const Usertohouse = await this.UsertohouseService.findOne(id);

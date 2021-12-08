@@ -6,7 +6,7 @@ export declare class UsertohouseController {
     constructor(UsertohouseService: UsertohouseService);
     createUsertohouse(newUsertohouse: CreateUsertohouseDto): Promise<Usertohouse>;
     findUsertohouse(): Promise<Usertohouse[]>;
-    findUsertohouseid(id: number): Promise<Usertohouse>;
+    findUsertohouseid(id: number): Promise<Usertohouse[]>;
     updateUsertohouse(id: number, createUsertohouseDto: CreateUsertohouseDto): Promise<Usertohouse>;
     deleteUsertohouse(id: number): Promise<any>;
 }

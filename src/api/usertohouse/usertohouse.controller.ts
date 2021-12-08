@@ -14,6 +14,7 @@ Controller,
   import { Usertohouse } from 'src/entity/usertohouse.entity';
 import { ApiTags } from '@nestjs/swagger';
 @ApiTags('usertohouse')
+
 @Controller('Usertohouse')
 export class UsertohouseController {
   constructor(private readonly UsertohouseService: UsertohouseService) {}
@@ -32,8 +33,8 @@ export class UsertohouseController {
   }
 
   @Get(':id') // GET /Usertohouse/123
-  async findUsertohouseid(@Param('id') id: number): Promise<Usertohouse> {
-    return await this.UsertohouseService.findOne(id);
+  async findUsertohouseid(@Param('id') id: number): Promise<Usertohouse[]> {
+    return await this.UsertohouseService.getById(id);
   }
 
   @Put(':id') // PUT /Usertohouse/123

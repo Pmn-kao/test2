@@ -1,6 +1,5 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { type } from 'os';
 import { Usertohouse } from 'src/entity/Usertohouse.entity';
 import { DeleteResult, Repository } from 'typeorm';
 
@@ -31,10 +30,26 @@ export class UsertohouseService {
   async getAll() {
     const _usertohouse = await this.usertohouseRepository
       .createQueryBuilder('usertohouse')
-      .leftJoinAndSelect('usertohouse. house', ' house')
+      .leftJoinAndSelect('usertohouse.house', 'house')
+      .leftJoinAndSelect("usertohouse.user", "user")
       // .andWhere('al.isDelete= :isDelete', { isDelete: false })
       // .orderBy('al.createdAt', 'DESC')
       .getMany();
     return _usertohouse;
   }
+
+  async getById(id: number) {
+    const _usertohouse = await this.usertohouseRepository
+    .createQueryBuilder("usertohouse")
+    .leftJoinAndSelect("usertohouse.house", "house")
+    .leftJoinAndSelect("usertohouse.user", "user")
+    .andWhere('usertohouse.id = :id', { id: id })
+    .getMany();
+    // const _richMenu = await this.richMenuRepository.find({
+    //   relations: ["image"],
+    //   where: { id },
+    // });
+    return _usertohouse;
+  }
+
 }

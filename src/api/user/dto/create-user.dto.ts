@@ -17,11 +17,9 @@ export class CreateUserDto {
   @ApiProperty()
   @IsString()
   confirmPassword: string;
-
+  @ApiProperty()
+  @IsNumber()
+  houseId: number;
   
-  // @ApiProperty({type:[Number]})
-  // @IsString()
-  // @IsNumber({},{each:true})
-  // houses: number[];
   
 }

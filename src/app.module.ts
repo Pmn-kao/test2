@@ -10,15 +10,21 @@ import { config } from "./orm";
 import { AuthModule } from "./api/auth/auth.module";
 import { AuthService } from "./api/auth/auth.service";
 import { JwtService } from "@nestjs/jwt";
+import { User } from "./entity/user.entity";
+import { Usertohouse } from "./entity/usertohouse.entity";
+import { House } from "./entity/house.entity";
 
 @Module({
   imports: [
     TypeOrmModule.forRoot(config),
+    TypeOrmModule.forFeature([User,Usertohouse,House]),
     UserModule,
     AlbumsModule,
     HouseModule,
     UsertohouseModule,
     AuthModule,
+   
+    
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -24,13 +24,7 @@ let UserController = class UserController {
         this.userService = userService;
     }
     async createUser(newUser) {
-        const { name, lastname, email, password, confirmPassword } = newUser;
-        const user = new user_entity_1.User();
-        user.name = newUser.name;
-        user.lastname = newUser.lastname;
-        user.email = newUser.email;
-        user.password = await this.userService.getHashPassword(confirmPassword);
-        return await this.userService.createOrUpdate(user);
+        return await this.userService.createUser(newUser);
     }
     async findUser() {
         console.log("dist/**/*.entity{.ts,.js}");

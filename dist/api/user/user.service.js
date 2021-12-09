@@ -18,10 +18,31 @@ const typeorm_1 = require("@nestjs/typeorm");
 const user_entity_1 = require("../../entity/user.entity");
 const typeorm_2 = require("typeorm");
 const bcrypt_1 = require("bcrypt");
+const house_entity_1 = require("../../entity/house.entity");
+const usertohouse_entity_1 = require("../../entity/usertohouse.entity");
 let UserService = class UserService {
-    constructor(userRepository) {
+    constructor(userRepository, userToHouseRepository, houseRepository) {
         this.userRepository = userRepository;
+        this.userToHouseRepository = userToHouseRepository;
+        this.houseRepository = houseRepository;
         this.saltRounds = 10;
+    }
+    async createUser(newUser) {
+        const { name, lastname, email, password, confirmPassword, houseId } = newUser;
+        const user = new user_entity_1.User();
+        user.name = name;
+        user.lastname = lastname;
+        user.email = email;
+        user.password = await this.getHashPassword(confirmPassword);
+        const data = await this.userRepository.save(user);
+        const house = await this.houseRepository.findOne({
+            where: { id: houseId },
+        });
+        const usertohouse = new usertohouse_entity_1.Usertohouse();
+        usertohouse.user = data;
+        usertohouse.house = house;
+        const datahouse = await this.userToHouseRepository.save(usertohouse);
+        return user;
     }
     async getHashPassword(password) {
         return await (0, bcrypt_1.hash)(password, this.saltRounds);
@@ -71,7 +92,11 @@ let UserService = class UserService {
 UserService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(user_entity_1.User)),
-    __metadata("design:paramtypes", [typeorm_2.Repository])
+    __param(1, (0, typeorm_1.InjectRepository)(usertohouse_entity_1.Usertohouse)),
+    __param(2, (0, typeorm_1.InjectRepository)(house_entity_1.House)),
+    __metadata("design:paramtypes", [typeorm_2.Repository,
+        typeorm_2.Repository,
+        typeorm_2.Repository])
 ], UserService);
 exports.UserService = UserService;
 //# sourceMappingURL=user.service.js.map

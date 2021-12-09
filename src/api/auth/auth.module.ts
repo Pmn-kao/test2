@@ -10,15 +10,16 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 import { User } from "src/entity/user.entity";
 import { House } from "src/entity/house.entity";
 import { Albums } from "src/entity/albums.entity";
+import { Usertohouse } from "src/entity/usertohouse.entity";
 
 @Module({
   imports: [
     PassportModule,
     JwtModule.register({
       secret: jwtConstants.secret,
-      signOptions: { expiresIn: "2m" },
+      signOptions: { expiresIn: "10h" },
     }),
-    TypeOrmModule.forFeature([User, House, Albums]),
+    TypeOrmModule.forFeature([User, Albums, Usertohouse, House]),
   ],
   controllers: [AuthController],
   providers: [AuthService, UserService, JwtStrategy],

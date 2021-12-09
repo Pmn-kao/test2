@@ -19,6 +19,7 @@ const typeorm_1 = require("@nestjs/typeorm");
 const user_entity_1 = require("../../entity/user.entity");
 const house_entity_1 = require("../../entity/house.entity");
 const albums_entity_1 = require("../../entity/albums.entity");
+const usertohouse_entity_1 = require("../../entity/usertohouse.entity");
 let AuthModule = class AuthModule {
 };
 AuthModule = __decorate([
@@ -27,9 +28,9 @@ AuthModule = __decorate([
             passport_1.PassportModule,
             jwt_1.JwtModule.register({
                 secret: constants_1.jwtConstants.secret,
-                signOptions: { expiresIn: "2m" },
+                signOptions: { expiresIn: "10h" },
             }),
-            typeorm_1.TypeOrmModule.forFeature([user_entity_1.User, house_entity_1.House, albums_entity_1.Albums]),
+            typeorm_1.TypeOrmModule.forFeature([user_entity_1.User, albums_entity_1.Albums, usertohouse_entity_1.Usertohouse, house_entity_1.House]),
         ],
         controllers: [auth_controller_1.AuthController],
         providers: [auth_service_1.AuthService, user_service_1.UserService, jwt_strategy_1.JwtStrategy],

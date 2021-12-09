@@ -17,12 +17,16 @@ const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
 const orm_1 = require("./orm");
 const auth_module_1 = require("./api/auth/auth.module");
+const user_entity_1 = require("./entity/user.entity");
+const usertohouse_entity_1 = require("./entity/usertohouse.entity");
+const house_entity_1 = require("./entity/house.entity");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
             typeorm_1.TypeOrmModule.forRoot(orm_1.config),
+            typeorm_1.TypeOrmModule.forFeature([user_entity_1.User, usertohouse_entity_1.Usertohouse, house_entity_1.House]),
             user_module_1.UserModule,
             albums_module_1.AlbumsModule,
             house_module_1.HouseModule,

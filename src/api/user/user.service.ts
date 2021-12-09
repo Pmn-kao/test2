@@ -3,25 +3,51 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { type } from "os";
 import { User } from "src/entity/user.entity";
 import { DeleteResult, Repository } from "typeorm";
-import { compare,hash } from "bcrypt";
+import { compare, hash } from "bcrypt";
 import { CreateUserDto } from "./dto/create-user.dto";
+
+import { House } from "src/entity/house.entity";
+import { Usertohouse } from "src/entity/usertohouse.entity";
 
 @Injectable()
 export class UserService {
   private saltRounds = 10;
   constructor(
     @InjectRepository(User)
-    private readonly userRepository: Repository<User>
+    private readonly userRepository: Repository<User>,
+    @InjectRepository(Usertohouse)
+    private readonly userToHouseRepository: Repository<Usertohouse>,
+    @InjectRepository(House)
+    private readonly houseRepository: Repository<House>
   ) {}
+
+  async createUser(newUser: CreateUserDto): Promise<User> {
+    const { name, lastname, email, password, confirmPassword, houseId } =
+      newUser;
+    const user = new User();
+    user.name = name;
+    user.lastname = lastname;
+    user.email = email;
+    user.password = await this.getHashPassword(confirmPassword);
+    const data = await this.userRepository.save(user);
+    const house = await this.houseRepository.findOne({
+      where: { id: houseId },
+    });
+    const usertohouse = new Usertohouse();
+    usertohouse.user = data;
+    usertohouse.house = house;
+    const datahouse=await this.userToHouseRepository.save(usertohouse)
+    return user;
+  }
 
   // async create(newUser:CreateUserDto):Promise<User>{
   //   const { name, lastname, email, password, confirmPassword} = newUser;
   //   const user = new User();
-  //   user.name = newUser.name;
-  //   user.lastname = newUser.lastname;
-  //   user.email = newUser.email;
+  //   user.name = name;
+  //   user.lastname = lastname;
+  //   user.email = email;
   //   user.password = await this.getHashPassword(confirmPassword);
-  //   // const data=await this.save(user);
+  //   const data=await this.userRepository.save(user)
   //   return user;
   // }
 
@@ -84,5 +110,4 @@ export class UserService {
   async findPayload(payload: any) {
     return await this.userRepository.findOne({ where: { id: payload.id } });
   }
-
 }

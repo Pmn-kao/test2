@@ -26,13 +26,13 @@ export class UserController {
   @Post() // POST /user
   @HttpCode(HttpStatus.CREATED)
   async createUser(@Body() newUser: CreateUserDto): Promise<User> {
-    const { name, lastname, email, password, confirmPassword} = newUser;
-    const user = new User();
-    user.name = newUser.name;
-    user.lastname = newUser.lastname;
-    user.email = newUser.email;
-    user.password = await this.userService.getHashPassword(confirmPassword);
-    return await this.userService.createOrUpdate(user);
+    // const { name, lastname, email, password, confirmPassword} = newUser;
+    // const user = new User();
+    // user.name = newUser.name;
+    // user.lastname = newUser.lastname;
+    // user.email = newUser.email;
+    // user.password = await this.userService.getHashPassword(confirmPassword);
+    return await this.userService.createUser(newUser);
   }
 
   

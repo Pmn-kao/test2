@@ -8,6 +8,7 @@ import {
     HttpCode,
     Put,
     Delete,
+    UseGuards,
   } from '@nestjs/common';
   import { AlbumsService } from './albums.service';
   import { CreateAlbumDto } from './dto/create-album.dto';
@@ -16,6 +17,7 @@ import {
   import { User } from 'src/entity/user.entity';
   import { Repository } from 'typeorm';
 import { ApiProperty, ApiTags } from '@nestjs/swagger';
+import { JwtAuthGuard } from '../auth/jwt-guard';
   @ApiTags('albums')
   @Controller('albums')
   export class AlbumsController {
@@ -35,18 +37,20 @@ import { ApiProperty, ApiTags } from '@nestjs/swagger';
       album.user1 = findUser;
       return await this.albumService.createOrUpdate(album);
     }
-  
+    @UseGuards(JwtAuthGuard)
     @Get() // GET /albums
     async findAlbums(): Promise<Albums[]> {
       console.log('dist/**/*.entity{.ts,.js}');
       return await this.albumService.getAll();
     }
   
+    @UseGuards(JwtAuthGuard)
     @Get(':id') // GET /albums/123
     async findAlbum(@Param('id') id: number): Promise<Albums[]> {
       return await this.albumService.getById(id);
     }
   
+    @UseGuards(JwtAuthGuard)
     @Put(':id') // PUT /albums/123
     async updateAlbum(
       @Param('id') id: number,
@@ -58,6 +62,7 @@ import { ApiProperty, ApiTags } from '@nestjs/swagger';
       return await this.albumService.createOrUpdate(album);
     }
   
+    @UseGuards(JwtAuthGuard)
     @Delete(':id')  // DELETE /albums/123
     async deleteAlbum(@Param('id') id: number): Promise<any> {
       await this.albumService.delete(id);

@@ -21,6 +21,7 @@ const typeorm_1 = require("@nestjs/typeorm");
 const user_entity_1 = require("../../entity/user.entity");
 const typeorm_2 = require("typeorm");
 const swagger_1 = require("@nestjs/swagger");
+const jwt_guard_1 = require("../auth/jwt-guard");
 let AlbumsController = class AlbumsController {
     constructor(albumService, userRepository) {
         this.albumService = albumService;
@@ -61,12 +62,14 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], AlbumsController.prototype, "createAlbum", null);
 __decorate([
+    (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard),
     (0, common_1.Get)(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], AlbumsController.prototype, "findAlbums", null);
 __decorate([
+    (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard),
     (0, common_1.Get)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
@@ -74,6 +77,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], AlbumsController.prototype, "findAlbum", null);
 __decorate([
+    (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard),
     (0, common_1.Put)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
@@ -82,6 +86,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], AlbumsController.prototype, "updateAlbum", null);
 __decorate([
+    (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard),
     (0, common_1.Delete)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),

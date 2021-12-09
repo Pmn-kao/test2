@@ -62,14 +62,12 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], AlbumsController.prototype, "createAlbum", null);
 __decorate([
-    (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard),
     (0, common_1.Get)(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], AlbumsController.prototype, "findAlbums", null);
 __decorate([
-    (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard),
     (0, common_1.Get)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
@@ -77,7 +75,6 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], AlbumsController.prototype, "findAlbum", null);
 __decorate([
-    (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard),
     (0, common_1.Put)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
@@ -86,7 +83,6 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], AlbumsController.prototype, "updateAlbum", null);
 __decorate([
-    (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard),
     (0, common_1.Delete)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
@@ -96,6 +92,8 @@ __decorate([
 AlbumsController = __decorate([
     (0, swagger_1.ApiTags)('albums'),
     (0, common_1.Controller)('albums'),
+    (0, swagger_1.ApiBearerAuth)(),
+    (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard),
     __param(1, (0, typeorm_1.InjectRepository)(user_entity_1.User)),
     __metadata("design:paramtypes", [albums_service_1.AlbumsService,
         typeorm_2.Repository])

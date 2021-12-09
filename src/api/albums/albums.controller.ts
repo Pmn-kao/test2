@@ -16,10 +16,12 @@ import {
   import { InjectRepository } from '@nestjs/typeorm';
   import { User } from 'src/entity/user.entity';
   import { Repository } from 'typeorm';
-import { ApiProperty, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiProperty, ApiTags } from '@nestjs/swagger';
 import { JwtAuthGuard } from '../auth/jwt-guard';
   @ApiTags('albums')
   @Controller('albums')
+  @ApiBearerAuth()
+  @UseGuards(JwtAuthGuard)
   export class AlbumsController {
     constructor(private readonly albumService: AlbumsService,
       @InjectRepository(User)
@@ -37,20 +39,20 @@ import { JwtAuthGuard } from '../auth/jwt-guard';
       album.user1 = findUser;
       return await this.albumService.createOrUpdate(album);
     }
-    @UseGuards(JwtAuthGuard)
+    
     @Get() // GET /albums
     async findAlbums(): Promise<Albums[]> {
       console.log('dist/**/*.entity{.ts,.js}');
       return await this.albumService.getAll();
     }
   
-    @UseGuards(JwtAuthGuard)
+    
     @Get(':id') // GET /albums/123
     async findAlbum(@Param('id') id: number): Promise<Albums[]> {
       return await this.albumService.getById(id);
     }
   
-    @UseGuards(JwtAuthGuard)
+    
     @Put(':id') // PUT /albums/123
     async updateAlbum(
       @Param('id') id: number,
@@ -62,7 +64,7 @@ import { JwtAuthGuard } from '../auth/jwt-guard';
       return await this.albumService.createOrUpdate(album);
     }
   
-    @UseGuards(JwtAuthGuard)
+    
     @Delete(':id')  // DELETE /albums/123
     async deleteAlbum(@Param('id') id: number): Promise<any> {
       await this.albumService.delete(id);

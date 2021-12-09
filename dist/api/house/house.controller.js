@@ -54,14 +54,12 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], HouseController.prototype, "createHouse", null);
 __decorate([
-    (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard),
     (0, common_1.Get)(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], HouseController.prototype, "findHouse", null);
 __decorate([
-    (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard),
     (0, common_1.Get)(":id"),
     __param(0, (0, common_1.Param)("id")),
     __metadata("design:type", Function),
@@ -69,7 +67,6 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], HouseController.prototype, "findHouseid", null);
 __decorate([
-    (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard),
     (0, common_1.Put)(":id"),
     __param(0, (0, common_1.Param)("id")),
     __param(1, (0, common_1.Body)()),
@@ -78,7 +75,6 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], HouseController.prototype, "updateHouse", null);
 __decorate([
-    (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard),
     (0, common_1.Delete)(":id"),
     __param(0, (0, common_1.Param)("id")),
     __metadata("design:type", Function),
@@ -88,6 +84,8 @@ __decorate([
 HouseController = __decorate([
     (0, swagger_1.ApiTags)("house"),
     (0, common_1.Controller)("house"),
+    (0, swagger_1.ApiBearerAuth)(),
+    (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard),
     __metadata("design:paramtypes", [house_service_1.HouseService])
 ], HouseController);
 exports.HouseController = HouseController;

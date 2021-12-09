@@ -52,14 +52,12 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UsertohouseController.prototype, "createUsertohouse", null);
 __decorate([
-    (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard),
     (0, common_1.Get)(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], UsertohouseController.prototype, "findUser", null);
 __decorate([
-    (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard),
     (0, common_1.Get)(":id"),
     __param(0, (0, common_1.Param)("id")),
     __metadata("design:type", Function),
@@ -67,7 +65,6 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UsertohouseController.prototype, "findUsertohouseid", null);
 __decorate([
-    (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard),
     (0, common_1.Put)(":id"),
     __param(0, (0, common_1.Param)("id")),
     __param(1, (0, common_1.Body)()),
@@ -76,7 +73,6 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UsertohouseController.prototype, "updateUsertohouse", null);
 __decorate([
-    (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard),
     (0, common_1.Delete)(":id"),
     __param(0, (0, common_1.Param)("id")),
     __metadata("design:type", Function),
@@ -86,6 +82,8 @@ __decorate([
 UsertohouseController = __decorate([
     (0, swagger_1.ApiTags)("usertohouse"),
     (0, common_1.Controller)("Usertohouse"),
+    (0, swagger_1.ApiBearerAuth)(),
+    (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard),
     __metadata("design:paramtypes", [usertohouse_service_1.UsertohouseService])
 ], UsertohouseController);
 exports.UsertohouseController = UsertohouseController;

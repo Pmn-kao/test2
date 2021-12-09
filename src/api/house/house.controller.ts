@@ -13,10 +13,12 @@ import {
 import { HouseService } from "./house.service";
 import { CreateHouseDto } from "./dto/create-house.dto";
 import { House } from "../../entity/house.entity";
-import { ApiTags } from "@nestjs/swagger";
+import { ApiBearerAuth, ApiTags } from "@nestjs/swagger";
 import { JwtAuthGuard } from "../auth/jwt-guard";
 @ApiTags("house")
 @Controller("house")
+@ApiBearerAuth()
+@UseGuards(JwtAuthGuard)
 export class HouseController {
   constructor(private readonly houseService: HouseService) {}
 
@@ -28,20 +30,20 @@ export class HouseController {
     return await this.houseService.createOrUpdate(house);
   }
 
-  @UseGuards(JwtAuthGuard)
+  
   @Get() // GET /house
   async findHouse(): Promise<House[]> {
     console.log("dist/**/*.entity{.ts,.js}");
     return await this.houseService.getAll();
   }
 
-  @UseGuards(JwtAuthGuard)
+  
   @Get(":id") // GET /house/123
   async findHouseid(@Param("id") id: number): Promise<House[]> {
     return await this.houseService.getById(id);
   }
 
-  @UseGuards(JwtAuthGuard)
+  
   @Put(":id") // PUT /house/123
   async updateHouse(
     @Param("id") id: number,
@@ -52,7 +54,7 @@ export class HouseController {
     return await this.houseService.createOrUpdate(house);
   }
 
-  @UseGuards(JwtAuthGuard)
+  
   @Delete(":id") // DELETE /house/123
   async deleteHouse(@Param("id") id: number): Promise<any> {
     await this.houseService.delete(id);

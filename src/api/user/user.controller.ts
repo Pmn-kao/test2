@@ -19,6 +19,7 @@ import { JwtAuthGuard } from "../auth/jwt-guard";
 @ApiTags("user")
 @Controller("user")
 @ApiBearerAuth()
+@UseGuards(JwtAuthGuard)
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
@@ -34,18 +35,18 @@ export class UserController {
     return await this.userService.createOrUpdate(user);
   }
 
-  @UseGuards(JwtAuthGuard)
+  
   @Get() // GET /user
   async findUser(): Promise<User[]> {
     console.log("dist/**/*.entity{.ts,.js}");
     return await this.userService.getAll();
   }
-  @UseGuards(JwtAuthGuard)
+  
   @Get(":id") // GET /user/123
   async findUserid(@Param("id") id: number): Promise<User[]> {
     return await this.userService.getById(id);
   }
-  @UseGuards(JwtAuthGuard)
+  
   @Put(":id") // PUT /usr/123
   async updateUser(
     @Param("id") id: number,

@@ -1,2 +1,2 @@
-export declare class ImportsExcelModule {
+export declare class UploadModule {
 }

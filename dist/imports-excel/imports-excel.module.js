@@ -6,15 +6,18 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ImportsExcelModule = void 0;
+exports.UploadModule = void 0;
 const common_1 = require("@nestjs/common");
-const imports_excel_service_1 = require("./imports-excel.service");
-let ImportsExcelModule = class ImportsExcelModule {
+const typeorm_1 = require("@nestjs/typeorm");
+const albums_entity_1 = require("../entity/albums.entity");
+const imports_excel_controller_1 = require("./imports-excel.controller");
+let UploadModule = class UploadModule {
 };
-ImportsExcelModule = __decorate([
+UploadModule = __decorate([
     (0, common_1.Module)({
-        providers: [imports_excel_service_1.ImportsExcelService]
+        imports: [typeorm_1.TypeOrmModule.forFeature([albums_entity_1.Albums])],
+        controllers: [imports_excel_controller_1.UploadController],
     })
-], ImportsExcelModule);
-exports.ImportsExcelModule = ImportsExcelModule;
+], UploadModule);
+exports.UploadModule = UploadModule;
 //# sourceMappingURL=imports-excel.module.js.map

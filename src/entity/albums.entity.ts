@@ -6,11 +6,14 @@ export class Albums {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ length: 30 })
+  @Column({nullable:true , length: 30 })
   title: string;
 
-  @Column({ length: 255 })
+  @Column({nullable:true ,length: 255 })
   remark: string;
+
+  @Column({nullable:true , type:"text"})
+  url : string;
 
   @ManyToOne(
     () => User,

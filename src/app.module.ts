@@ -14,8 +14,8 @@ import { User } from "./entity/user.entity";
 import { Usertohouse } from "./entity/usertohouse.entity";
 import { House } from "./entity/house.entity";
 import { ExportsExcelModule } from './exports-excel/exports-excel.module';
-import { ImportsExcelController } from './imports-excel/imports-excel.controller';
-import { ImportsExcelModule } from './imports-excel/imports-excel.module';
+// import { ImportsExcelController } from './imports-excel/imports-excel.controller';
+import { UploadModule } from './imports-excel/imports-excel.module';
 
 @Module({
   imports: [
@@ -27,11 +27,10 @@ import { ImportsExcelModule } from './imports-excel/imports-excel.module';
     UsertohouseModule,
     AuthModule,
     ExportsExcelModule,
-    ImportsExcelModule,
-   
-    
+    UploadModule,
+  
   ],
-  controllers: [AppController, ImportsExcelController],
+  controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule {}

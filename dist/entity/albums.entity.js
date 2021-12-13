@@ -19,13 +19,17 @@ __decorate([
     __metadata("design:type", Number)
 ], Albums.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ length: 30 }),
+    (0, typeorm_1.Column)({ nullable: true, length: 30 }),
     __metadata("design:type", String)
 ], Albums.prototype, "title", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ length: 255 }),
+    (0, typeorm_1.Column)({ nullable: true, length: 255 }),
     __metadata("design:type", String)
 ], Albums.prototype, "remark", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ nullable: true, type: "text" }),
+    __metadata("design:type", String)
+], Albums.prototype, "url", void 0);
 __decorate([
     (0, typeorm_1.ManyToOne)(() => user_entity_1.User, user => user.albums1s),
     __metadata("design:type", user_entity_1.User)

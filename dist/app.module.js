@@ -20,6 +20,9 @@ const auth_module_1 = require("./api/auth/auth.module");
 const user_entity_1 = require("./entity/user.entity");
 const usertohouse_entity_1 = require("./entity/usertohouse.entity");
 const house_entity_1 = require("./entity/house.entity");
+const exports_excel_module_1 = require("./exports-excel/exports-excel.module");
+const imports_excel_controller_1 = require("./imports-excel/imports-excel.controller");
+const imports_excel_module_1 = require("./imports-excel/imports-excel.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -32,8 +35,10 @@ AppModule = __decorate([
             house_module_1.HouseModule,
             usertohouse_module_1.UsertohouseModule,
             auth_module_1.AuthModule,
+            exports_excel_module_1.ExportsExcelModule,
+            imports_excel_module_1.ImportsExcelModule,
         ],
-        controllers: [app_controller_1.AppController],
+        controllers: [app_controller_1.AppController, imports_excel_controller_1.ImportsExcelController],
         providers: [app_service_1.AppService],
     })
 ], AppModule);

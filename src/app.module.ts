@@ -13,6 +13,9 @@ import { JwtService } from "@nestjs/jwt";
 import { User } from "./entity/user.entity";
 import { Usertohouse } from "./entity/usertohouse.entity";
 import { House } from "./entity/house.entity";
+import { ExportsExcelModule } from './exports-excel/exports-excel.module';
+import { ImportsExcelController } from './imports-excel/imports-excel.controller';
+import { ImportsExcelModule } from './imports-excel/imports-excel.module';
 
 @Module({
   imports: [
@@ -23,10 +26,12 @@ import { House } from "./entity/house.entity";
     HouseModule,
     UsertohouseModule,
     AuthModule,
+    ExportsExcelModule,
+    ImportsExcelModule,
    
     
   ],
-  controllers: [AppController],
+  controllers: [AppController, ImportsExcelController],
   providers: [AppService],
 })
 export class AppModule {}

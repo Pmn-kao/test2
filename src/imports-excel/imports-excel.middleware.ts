@@ -7,12 +7,11 @@ export const FileUploadMiddleware = (
   limit: number = 2 * 1024 * 1024,
   dest = "file"
 ): MulterOptions => {
-
   return {
     storage: multer.diskStorage({
       destination: join(".", "bucket", "uploads", dest),
-      filename:(req, file, cb) => {
-        return cb(null, `${file.originalname}${extname(file.originalname)}`);
+      filename: (req, file, cb) => {
+        return cb(null, `${file.originalname}`);
       },
     }),
     limits: {

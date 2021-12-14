@@ -36,7 +36,7 @@ let AlbumsController = class AlbumsController {
         return await this.albumService.createOrUpdate(album);
     }
     async findAlbums() {
-        console.log('dist/**/*.entity{.ts,.js}');
+        console.log("dist/**/*.entity{.ts,.js}");
         return await this.albumService.getAll();
     }
     async findAlbum(id) {
@@ -68,30 +68,30 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], AlbumsController.prototype, "findAlbums", null);
 __decorate([
-    (0, common_1.Get)(':id'),
-    __param(0, (0, common_1.Param)('id')),
+    (0, common_1.Get)(":id"),
+    __param(0, (0, common_1.Param)("id")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], AlbumsController.prototype, "findAlbum", null);
 __decorate([
-    (0, common_1.Put)(':id'),
-    __param(0, (0, common_1.Param)('id')),
+    (0, common_1.Put)(":id"),
+    __param(0, (0, common_1.Param)("id")),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number, create_album_dto_1.CreateAlbumDto]),
     __metadata("design:returntype", Promise)
 ], AlbumsController.prototype, "updateAlbum", null);
 __decorate([
-    (0, common_1.Delete)(':id'),
-    __param(0, (0, common_1.Param)('id')),
+    (0, common_1.Delete)(":id"),
+    __param(0, (0, common_1.Param)("id")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], AlbumsController.prototype, "deleteAlbum", null);
 AlbumsController = __decorate([
-    (0, swagger_1.ApiTags)('albums'),
-    (0, common_1.Controller)('albums'),
+    (0, swagger_1.ApiTags)("albums"),
+    (0, common_1.Controller)("albums"),
     (0, swagger_1.ApiBearerAuth)(),
     (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard),
     __param(1, (0, typeorm_1.InjectRepository)(user_entity_1.User)),

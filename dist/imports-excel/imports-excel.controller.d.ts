@@ -5,4 +5,5 @@ export declare class UploadController {
     private readonly albumRepository;
     constructor(albumRepository: Repository<Albums>);
     uploadFile(file: Express.Multer.File): Promise<Albums>;
+    readfile(): Promise<void>;
 }

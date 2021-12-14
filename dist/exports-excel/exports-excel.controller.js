@@ -14,14 +14,25 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ExportsExcelController = void 0;
 const common_1 = require("@nestjs/common");
+const swagger_1 = require("@nestjs/swagger");
+const typeorm_1 = require("@nestjs/typeorm");
+const jwt_guard_1 = require("../api/auth/jwt-guard");
+const user_entity_1 = require("../entity/user.entity");
+const typeorm_2 = require("typeorm");
 const exports_excel_service_1 = require("./exports-excel.service");
 let ExportsExcelController = class ExportsExcelController {
-    constructor(excelService) {
+    constructor(excelService, userRepository) {
         this.excelService = excelService;
+        this.userRepository = userRepository;
     }
-    async getExcel(res) {
+    async getAll(res) {
         try {
-            return await this.excelService.getExcel(res);
+            const data = await this.userRepository
+                .createQueryBuilder("user")
+                .leftJoinAndSelect("user.usertohouses", "usertohouses")
+                .leftJoinAndSelect("usertohouses.house", "h")
+                .getMany();
+            return await this.excelService.getExcel(res, data);
         }
         catch (error) {
             throw error;
@@ -34,10 +45,14 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
-], ExportsExcelController.prototype, "getExcel", null);
+], ExportsExcelController.prototype, "getAll", null);
 ExportsExcelController = __decorate([
+    (0, swagger_1.ApiTags)("export-excel"),
     (0, common_1.Controller)("export-excel"),
-    __metadata("design:paramtypes", [exports_excel_service_1.ExportsExcelService])
+    (0, common_1.Controller)("export-excel"),
+    __param(1, (0, typeorm_1.InjectRepository)(user_entity_1.User)),
+    __metadata("design:paramtypes", [exports_excel_service_1.ExportsExcelService,
+        typeorm_2.Repository])
 ], ExportsExcelController);
 exports.ExportsExcelController = ExportsExcelController;
 //# sourceMappingURL=exports-excel.controller.js.map

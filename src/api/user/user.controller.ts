@@ -57,7 +57,6 @@ export class UserController {
     user.lastname = createUserDto.lastname;
     return await this.userService.createOrUpdate(user);
   }
-  @UseGuards(JwtAuthGuard)
   @Delete(":id") // DELETE /user/123
   async deleteUser(@Param("id") id: number): Promise<any> {
     await this.userService.delete(id);

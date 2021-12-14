@@ -1,8 +1,8 @@
-import { AlbumsService } from './albums.service';
-import { CreateAlbumDto } from './dto/create-album.dto';
-import { Albums } from '../../entity/albums.entity';
-import { User } from 'src/entity/user.entity';
-import { Repository } from 'typeorm';
+import { AlbumsService } from "./albums.service";
+import { CreateAlbumDto } from "./dto/create-album.dto";
+import { Albums } from "../../entity/albums.entity";
+import { User } from "src/entity/user.entity";
+import { Repository } from "typeorm";
 export declare class AlbumsController {
     private readonly albumService;
     private userRepository;

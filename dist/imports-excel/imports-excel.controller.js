@@ -17,23 +17,36 @@ const common_1 = require("@nestjs/common");
 const platform_express_1 = require("@nestjs/platform-express");
 const swagger_1 = require("@nestjs/swagger");
 const typeorm_1 = require("@nestjs/typeorm");
+const jwt_guard_1 = require("../api/auth/jwt-guard");
 const albums_entity_1 = require("../entity/albums.entity");
 const typeorm_2 = require("typeorm");
 const imports_excel_dto_1 = require("./dto/imports-excel.dto");
 const imports_excel_middleware_1 = require("./imports-excel.middleware");
+const node_xlsx_1 = require("node-xlsx");
+const path_1 = require("path");
 let UploadController = class UploadController {
     constructor(albumRepository) {
         this.albumRepository = albumRepository;
     }
     async uploadFile(file) {
-        console.log(file);
         if (!file.originalname.match(/\.(xlsx|pdf|xls)$/)) {
             throw new Error("error");
         }
+        console.log((0, path_1.join)(__dirname, "../..", "bucket", "uploads", "pmn", file.originalname));
         const album = new albums_entity_1.Albums();
         album.url = file.path;
         const url = await this.albumRepository.save(album);
         return url;
+    }
+    async readfile() {
+        const workSheetsFromBuffer = node_xlsx_1.default.parse((0, path_1.join)(__dirname, "../..", "bucket", "uploads", "pmn", `รหัสอาคาร.xlsx`));
+        for (let i = 3; i < workSheetsFromBuffer[0].data.length; i++) {
+            console.log(workSheetsFromBuffer[0].data[i][2]);
+            console.log(workSheetsFromBuffer[0].data[i][5]);
+            console.log(workSheetsFromBuffer[0].data[i][6]);
+            console.log(workSheetsFromBuffer[0].data[i][8]);
+            console.log(workSheetsFromBuffer[0].data[i][9]);
+        }
     }
 };
 __decorate([
@@ -46,7 +59,15 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], UploadController.prototype, "uploadFile", null);
+__decorate([
+    (0, common_1.Get)(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], UploadController.prototype, "readfile", null);
 UploadController = __decorate([
+    (0, swagger_1.ApiTags)("imports-excel"),
+    (0, common_1.Controller)("imports-exce"),
     (0, common_1.Controller)(),
     __param(0, (0, typeorm_1.InjectRepository)(albums_entity_1.Albums)),
     __metadata("design:paramtypes", [typeorm_2.Repository])

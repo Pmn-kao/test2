@@ -5,7 +5,6 @@ import { User } from "src/entity/user.entity";
 import { DeleteResult, Repository } from "typeorm";
 import { compare, hash } from "bcrypt";
 import { CreateUserDto } from "./dto/create-user.dto";
-
 import { House } from "src/entity/house.entity";
 import { Usertohouse } from "src/entity/usertohouse.entity";
 

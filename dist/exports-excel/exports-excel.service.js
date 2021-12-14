@@ -16,34 +16,39 @@ exports.ExportsExcelService = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const xl = require("excel4node");
+const albums_entity_1 = require("../entity/albums.entity");
 const user_entity_1 = require("../entity/user.entity");
 const typeorm_2 = require("typeorm");
 let ExportsExcelService = class ExportsExcelService {
     constructor(userRepository) {
         this.userRepository = userRepository;
     }
-    async getExcel(res) {
+    async getExcel(res, data) {
+        var _a;
         const wb = new xl.Workbook();
-        const ws = wb.addWorksheet('Sheet');
+        const ws = wb.addWorksheet("Sheet");
         ws.column(1).setWidth(20);
         ws.column(2).setWidth(20);
         ws.column(3).setWidth(20);
-        ws.column(4).setWidth(50);
-        ws.column(5).setWidth(50);
-        ws.cell(1, 1).string('Id');
-        ws.cell(1, 2).string('Name');
-        ws.cell(1, 3).string('lastname');
-        ws.cell(1, 4).string('email');
-        const wh = await this.userRepository.find({ order: { id: 'ASC' } });
+        ws.column(4).setWidth(40);
+        ws.column(5).setWidth(20);
+        ws.column(6).setWidth(20);
+        ws.cell(1, 1).string("Id");
+        ws.cell(1, 2).string("Name");
+        ws.cell(1, 3).string("lastname");
+        ws.cell(1, 4).string("email");
+        ws.cell(1, 5).string("usertohouse");
         let _row = 2;
-        for (const data of wh) {
-            ws.cell(_row, 1).number(data.id);
-            ws.cell(_row, 2).string(data.name);
-            ws.cell(_row, 3).string(data.lastname);
-            ws.cell(_row, 4).string(data.email);
+        for (const datas of data) {
+            console.log();
+            ws.cell(_row, 1).number(datas.id);
+            ws.cell(_row, 2).string(datas.name);
+            ws.cell(_row, 3).string(datas.lastname);
+            ws.cell(_row, 4).string(datas.email);
+            ws.cell(_row, 5).string(`${((_a = datas.usertohouses[0]) === null || _a === void 0 ? void 0 : _a.house.name) || ""}`);
             _row++;
         }
-        wb.write('Excel.xlsx', res);
+        wb.write("Excel.xlsx", res);
     }
 };
 ExportsExcelService = __decorate([
